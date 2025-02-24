@@ -84,3 +84,58 @@ class Product {
   
   // Log the updated product details (stock reduced)
   console.log(product2.getDetails());
+
+
+// Task 3: Creating an Inventory Class
+// Define the Product class (from previous tasks)
+class Product {
+    // Initialize the properties of the Product class
+    constructor(name, id, price, stock) {
+      this.name = name; // Assign the name property
+      this.id = id; // Assign the id property
+      this.price = price; // Assign the price property
+      this.stock = stock; // Assign the stock property
+    }
+  
+    // Method to return the product's details as a formatted string
+    getDetails() {
+      return `Product: ${this.name}, ID: ${this.id}, Price: $${this.price}, Stock: ${this.stock}`;
+    }
+  
+    // Method to update the stock level when an order is placed
+    updateStock(quantity) {
+      this.stock -= quantity; // Decrease the stock by the quantity ordered
+    }
+  }
+  
+  // Define the Inventory class
+  class Inventory {
+    // Initialize the Inventory class with an empty products array
+    constructor() {
+      this.products = []; // Array to store the products
+    }
+  
+    // Method to add a product to the inventory
+    addProduct(product) {
+      this.products.push(product); // Add the product to the products array
+    }
+  
+    // Method to list all products in the inventory
+    listProducts() {
+      this.products.forEach(product => {
+        console.log(product.getDetails()); // Log each product's details
+      });
+    }
+  }
+  
+  // Product information
+  const product1 = new Product("Gaming Headset", 305, 150, 25);
+  
+  // Create an inventory object
+  const inventory = new Inventory();
+  
+  // Add product to the inventory
+  inventory.addProduct(product1);
+  
+  // List all products in the inventory
+  inventory.listProducts();
