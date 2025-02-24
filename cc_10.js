@@ -213,3 +213,62 @@ class Product {
   
   // Print updated product details after the order is placed
   console.log(prod1.getDetails());
+
+
+// Task 5: Implementing Product Restocking
+// Define the Product class
+class Product {
+    constructor(name, id, price, stock) {
+      this.name = name;
+      this.id = id;
+      this.price = price;
+      this.stock = stock;
+    }
+  
+    // Method to get product details
+    getDetails() {
+      return `Product: ${this.name}, ID: ${this.id}, Price: $${this.price}, Stock: ${this.stock}`;
+    }
+  
+    // Method to update stock
+    updateStock(quantity) {
+      this.stock -= quantity;
+    }
+  
+    // Method to restock product (increase stock)
+    restock(quantity) {
+      this.stock += quantity;
+    }
+  }
+  
+  // Define the Inventory class
+  class Inventory {
+    constructor() {
+      this.products = [];
+    }
+  
+    addProduct(product) {
+      this.products.push(product);
+    }
+  
+    // Restock a product by increasing its stock
+    restockProduct(productId, quantity) {
+      const product = this.products.find(p => p.id === productId);
+      if (product) {
+        product.restock(quantity);
+      }
+    }
+  }
+  
+  // Define a new product
+  const prod1 = new Product("Smartphone", 202, 800, 5);
+  
+  // Create the inventory and add the product
+  const inventory = new Inventory();
+  inventory.addProduct(prod1);
+  
+  // Restock the product
+  inventory.restockProduct(202, 3);
+  
+  // Print updated product details after restocking
+  console.log(prod1.getDetails());
