@@ -139,3 +139,77 @@ class Product {
   
   // List all products in the inventory
   inventory.listProducts();
+
+
+// Task 4: Implementing Order Management
+// Define the Product class
+class Product {
+    constructor(name, id, price, stock) {
+      this.name = name;
+      this.id = id;
+      this.price = price;
+      this.stock = stock;
+    }
+  
+    // Method to get product details
+    getDetails() {
+      return `Product: ${this.name}, ID: ${this.id}, Price: $${this.price}, Stock: ${this.stock}`;
+    }
+  
+    // Method to update stock
+    updateStock(quantity) {
+      this.stock -= quantity;
+    }
+  }
+  
+  // Define the Order class
+  class Order {
+    constructor(orderId, product, quantity) {
+      this.orderId = orderId;
+      this.product = product;
+      this.quantity = quantity;
+      this.totalPrice = this.product.price * this.quantity;
+    }
+  
+    // Method to get order details
+    getOrderDetails() {
+      return `Order ID: ${this.orderId}, Product: ${this.product.name}, Quantity: ${this.quantity}, Total Price: $${this.totalPrice}`;
+    }
+  }
+  
+  // Define the Inventory class
+  class Inventory {
+    constructor() {
+      this.products = [];
+      this.orders = [];
+    }
+  
+    addProduct(product) {
+      this.products.push(product);
+    }
+  
+    placeOrder(orderId, product, quantity) {
+      if (product.stock >= quantity) {
+        const order = new Order(orderId, product, quantity);
+        this.orders.push(order);
+        product.updateStock(quantity);
+        console.log(order.getOrderDetails());  // Only log order details here
+      }
+    }
+  
+    listOrders() {
+    }
+  }
+  
+  // Define a different product
+  const prod1 = new Product("Tablet", 203, 300, 10);
+  
+  // Create inventory and add the product
+  const inventory = new Inventory();
+  inventory.addProduct(prod1);
+  
+  // Place an order
+  inventory.placeOrder(701, prod1, 2);
+  
+  // Print updated product details after the order is placed
+  console.log(prod1.getDetails());
