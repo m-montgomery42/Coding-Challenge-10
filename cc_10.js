@@ -98,9 +98,6 @@ class Inventory {
   }
 }
 
-// =========================
-// TESTING THE IMPLEMENTATION
-// =========================
 
 // Task 1: Creating a product and displaying details
 const product1 = new Product("Smartphone", 202, 800, 20);
